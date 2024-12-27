@@ -7,9 +7,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/typescript/recommended',
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended' // 末尾添加添加这一行
   ],
   parserOptions: {
     ecmaVersion: 2020
