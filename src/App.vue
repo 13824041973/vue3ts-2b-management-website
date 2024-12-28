@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    {{ $store.state.name }}
     <RouterLink to="/login">登录</RouterLink>
     <RouterLink to="/main">首页</RouterLink>
     <RouterView />

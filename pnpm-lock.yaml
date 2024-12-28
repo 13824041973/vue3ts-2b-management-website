@@ -17,6 +17,9 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@4.5.5))
+      vuex:
+        specifier: ^4.1.0
+        version: 4.1.0(vue@3.5.13(typescript@4.5.5))
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.4.0
@@ -3878,6 +3881,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  vuex@4.1.0:
+    resolution: {integrity: sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==}
+    peerDependencies:
+      vue: ^3.2.0
 
   watchpack@2.4.2:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
@@ -8300,6 +8308,11 @@ snapshots:
       '@vue/shared': 3.5.13
     optionalDependencies:
       typescript: 4.5.5
+
+  vuex@4.1.0(vue@3.5.13(typescript@4.5.5)):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.13(typescript@4.5.5)
 
   watchpack@2.4.2:
     dependencies:
