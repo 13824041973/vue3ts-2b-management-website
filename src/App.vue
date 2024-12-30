@@ -1,19 +1,29 @@
 <template>
-  <div class="app">
-    {{ $store.state.name }}
-    <RouterLink to="/login">登录</RouterLink>
-    <RouterLink to="/main">首页</RouterLink>
-    <RouterView />
-  </div>
+  <el-config-provider :locale="locale">
+    <div class="app">
+      {{ $store.state.name }}
+      <RouterLink to="/login">登录</RouterLink>
+      <RouterLink to="/main">首页</RouterLink>
+      <RouterView />
+      <div>当前语言： {{ language }}</div>
+      <el-button type="primary" @click="toggleLanguage">切换语言</el-button>
+      <el-table mb-1 :data="[]" />
+      <el-pagination :total="100" />
+    </div>
+  </el-config-provider>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
+import { computed, ref } from 'vue'
 
-export default defineComponent({
-  name: 'App',
-  components: {}
-})
+const language = ref('zhCn')
+const locale = computed(() => (language.value === 'zhCn' ? zhCn : en))
+const toggleLanguage = () => {
+  language.value = language.value === 'zhCn' ? 'en' : 'zhCn'
+}
 </script>
 
 <style lang="less">
