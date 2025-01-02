@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider :locale="locale">
+  <ElConfigProvider :locale="locale">
     <div class="app">
       {{ $store.state.name }}
       <RouterLink to="/login">登录</RouterLink>
@@ -10,7 +10,7 @@
       <el-table mb-1 :data="[]" />
       <el-pagination :total="100" />
     </div>
-  </el-config-provider>
+  </ElConfigProvider>
 </template>
 
 <script lang="ts" setup>

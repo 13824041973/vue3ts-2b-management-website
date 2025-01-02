@@ -10,3 +10,9 @@ app.use(router)
 app.use(store)
 
 app.mount('#app')
+
+import mainRequest from './service'
+mainRequest.request({
+  url: '/home/multidata',
+  method: 'GET'
+})
