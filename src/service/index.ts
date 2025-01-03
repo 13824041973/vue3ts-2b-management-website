@@ -7,14 +7,14 @@ const mainRequest = new HYRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      console.log('请求拦截器')
+      console.log('实例里的请求拦截器')
       return config
     },
     requestInterceptorCatch: (err) => {
       return err
     },
     responseInterceptor: (res) => {
-      console.log('响应拦截器', res)
+      console.log('实例里的响应拦截器', res)
       return res.data
     },
     responseInterceptorCatch: (err) => {
