@@ -1,0 +1,12 @@
+/*清除浮动破坏带来的塌陷问题*/
+/*清除浮动的兼容IE*/
+.clearfloat {
+  zoom: 1;
+}
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: hidden;
+  height: 0;
+}

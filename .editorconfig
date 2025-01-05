@@ -1,0 +1,11 @@
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+charset = utf-8
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md] # 表示仅 md 文件适用以下规则
+insert_final_newline = false
+trim_trailing_whitespace = false
+max_line_length = off
