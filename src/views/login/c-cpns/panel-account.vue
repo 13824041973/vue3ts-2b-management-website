@@ -2,10 +2,10 @@
   <div class="panel-account">
     <el-form :model="accountData" label-width="60" ref="ruleFormRef" :rules="rules" size="large">
       <el-form-item label="账号" prop="name">
-        <el-input v-model="accountData.name" />
+        <el-input v-model="accountData.name" placeholder="luyolg" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="accountData.password" show-password />
+        <el-input v-model="accountData.password" show-password placeholder="123456" />
       </el-form-item>
     </el-form>
   </div>
@@ -14,6 +14,8 @@
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { reactive, ref } from 'vue'
 import type { AccountDataType } from '../types'
+import { localCache } from '@/utils/cache'
+import { LOGIN_NAME, LOGIN_PASSWORD } from '../constants'
 
 const rules: FormRules = {
   name: [
@@ -29,15 +31,16 @@ const rules: FormRules = {
 }
 
 const accountData = reactive<AccountDataType>({
-  name: 'luyolg',
-  password: '123456',
+  name: localCache.getCache(LOGIN_NAME) ?? '',
+  password: localCache.getCache(LOGIN_PASSWORD) ?? '',
 })
 
 const ruleFormRef = ref<FormInstance>()
 async function loginAction() {
   const validateRes = await ruleFormRef.value?.validate(() => {})
   if (validateRes) {
-    return { name: accountData.name, password: accountData.password }
+    const { name, password } = accountData
+    return { name, password }
   } else {
     ElMessage.error('请输入正确的格式后再操作~')
     return false

@@ -1,0 +1,3 @@
+export const LOGIN_NAME = 'LOGIN_NAME'
+export const LOGIN_PASSWORD = 'LOGIN_PASSWORD'
+export const IS_REMEMBER_PWD = 'IS_REMEMBER_PWD'

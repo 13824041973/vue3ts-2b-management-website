@@ -1,7 +1,6 @@
+import { LOGIN_TOKEN } from '@/global/constants'
 import { localCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
-
-const LOGIN_TOKEN = 'login/token'
 
 const useLoginStore = defineStore('login', {
   state: () => ({

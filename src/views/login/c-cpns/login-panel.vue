@@ -44,6 +44,9 @@ import { accountLoginReq } from '@/service/login/login'
 import { ElMessage } from 'element-plus'
 import useLoginStore from '@/store/login/login'
 import type { AccountDataType } from '../types'
+import { IS_REMEMBER_PWD, LOGIN_NAME, LOGIN_PASSWORD } from '../constants'
+import router from '@/router'
+import { localCache } from '@/utils/cache'
 
 const loginStore = useLoginStore()
 
@@ -51,7 +54,7 @@ type tabsName = 'account' | 'phone'
 // 当前tabs
 const tabsActiveName = ref<tabsName>('account')
 // 记住密码
-const isRememberPwd = ref(false)
+const isRememberPwd = ref<boolean>(localCache.getCache(IS_REMEMBER_PWD) ?? false)
 // 账号登录panel的实例
 const accountRef = ref<InstanceType<typeof PanelAccount>>()
 
@@ -63,15 +66,36 @@ async function handleLoginBtnClick() {
   }
 
   if (params) {
-    accountLoginReq(params).then(
-      (res: any) => {
-        loginStore.loginAccountAction(res.data)
-      },
-      (err) => {
-        ElMessage.warning(err as string)
-      },
-    )
+    // 处理 记住密码 的逻辑
+    rememberPwdHandler(params)
+    // 发起登录请求
+    loginRequest(params)
   }
+}
+function rememberPwdHandler(reqParams: AccountDataType) {
+  if (isRememberPwd.value) {
+    localCache.setCache(IS_REMEMBER_PWD, isRememberPwd.value)
+    localCache.setCache(LOGIN_NAME, reqParams.name)
+    localCache.setCache(LOGIN_PASSWORD, reqParams.password)
+  } else {
+    localCache.removeCache(IS_REMEMBER_PWD)
+    localCache.removeCache(LOGIN_PASSWORD)
+  }
+}
+function loginRequest(reqParams: AccountDataType) {
+  accountLoginReq(reqParams).then(
+    (res: any) => {
+      if (res.data.token) {
+        // 存储token到pinia且存到localStorage里
+        loginStore.loginAccountAction(res.data)
+
+        router.push('/main')
+      }
+    },
+    (err) => {
+      ElMessage.warning(err as string)
+    },
+  )
 }
 </script>
 
