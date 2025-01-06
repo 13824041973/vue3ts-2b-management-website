@@ -8,10 +8,10 @@ const mainRequest = new HYRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // 模仿携带token
-      const token = 'xxx'
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-      }
+      // const token = 'xxx'
+      // if (token) {
+      //   config.headers.Authorization = `Bearer ${token}`
+      // }
       return config
     },
     requestInterceptorCatch: (err) => {
