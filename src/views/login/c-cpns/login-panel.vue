@@ -50,9 +50,9 @@ import { localCache } from '@/utils/cache'
 
 const loginStore = useLoginStore()
 
-type tabsName = 'account' | 'phone'
+type TabsName = 'account' | 'phone'
 // 当前tabs
-const tabsActiveName = ref<tabsName>('account')
+const tabsActiveName = ref<TabsName>('account')
 // 记住密码
 const isRememberPwd = ref<boolean>(localCache.getCache(IS_REMEMBER_PWD) ?? false)
 // 账号登录panel的实例
@@ -63,6 +63,7 @@ async function handleLoginBtnClick() {
   if (tabsActiveName.value === 'account') {
     params = await accountRef.value?.loginAction()
   } else if (tabsActiveName.value === 'phone') {
+    ElMessage.warning('手机登录功能未实现')
   }
 
   if (params) {
@@ -101,7 +102,7 @@ function loginRequest(reqParams: AccountDataType) {
 
 <style lang="less" scoped>
 .login-panel {
-  min-width: 330px;
+  width: 330px;
   transform: translateY(-50%);
 
   .tabs {
