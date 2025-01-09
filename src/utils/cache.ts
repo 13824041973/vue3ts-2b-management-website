@@ -11,14 +11,14 @@ class StorageCache {
   }
 
   setCache(key: string, value: any) {
-    if (value) {
+    if (value !== null && value !== undefined) {
       this.storage.setItem(key, JSON.stringify(value))
     }
   }
 
   getCache(key: string) {
     const value = this.storage.getItem(key)
-    if (value) return JSON.parse(value)
+    if (value !== null && value !== undefined) return JSON.parse(value)
     else return null
   }
 
