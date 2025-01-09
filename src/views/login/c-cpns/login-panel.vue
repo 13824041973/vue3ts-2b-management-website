@@ -40,12 +40,10 @@
 import { ref } from 'vue'
 import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
-import { accountLoginReq } from '@/service/login/login'
 import { ElMessage } from 'element-plus'
 import useLoginStore from '@/store/login/login'
 import type { AccountDataType } from '../types'
 import { IS_REMEMBER_PWD, LOGIN_NAME, LOGIN_PASSWORD } from '../constants'
-import router from '@/router'
 import { localCache } from '@/utils/cache'
 
 const loginStore = useLoginStore()
@@ -69,8 +67,8 @@ async function handleLoginBtnClick() {
   if (params) {
     // 处理 记住密码 的逻辑
     rememberPwdHandler(params)
-    // 发起登录请求
-    loginRequest(params)
+    // // 发起登录请求，存储token到pinia且存到localStorage里（并且里面处理存储用户信息的行为）
+    loginStore.loginAccountAction(params)
   }
 }
 function rememberPwdHandler(reqParams: AccountDataType) {
@@ -82,21 +80,6 @@ function rememberPwdHandler(reqParams: AccountDataType) {
     localCache.removeCache(IS_REMEMBER_PWD)
     localCache.removeCache(LOGIN_PASSWORD)
   }
-}
-function loginRequest(reqParams: AccountDataType) {
-  accountLoginReq(reqParams).then(
-    (res: any) => {
-      if (res.data.token) {
-        // 存储token到pinia且存到localStorage里
-        loginStore.loginAccountAction(res.data)
-
-        router.push('/main')
-      }
-    },
-    (err) => {
-      ElMessage.warning(err as string)
-    },
-  )
 }
 </script>
 

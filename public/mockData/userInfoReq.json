@@ -1,0 +1,13 @@
+{
+    "code":0,
+    "data":{
+        "cellphone":18812345678,
+        "createAt":"2021-01-02T10:20:26.000Z",
+        "department":{"id":1,"name":"总裁办","parentId":null},
+        "enable": 1,
+        "id": 1,
+        "name":"luyolg",
+        "role":{"id":1,"name":"超级管理员","intro":"所有权限"},
+        "updateAt": "2021-01-03T04:50:13.000Z"
+    }
+}
