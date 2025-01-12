@@ -23,6 +23,11 @@ export async function userInfoReq(id: number) {
   }
 }
 
+/**
+ * 获取用户的菜单树
+ * @param id 这个id是角色ID，非用户ID
+ * @returns
+ */
 export async function userMenusByRoleId(id: number) {
   if (id === 1) {
     const jsonData = await mockRequest.get('/mockData/login/userMenus.json')
