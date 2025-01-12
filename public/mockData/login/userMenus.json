@@ -28,6 +28,108 @@
                     "children": null
                 }
             ]
+        },
+        {
+            "id": 1,
+            "name": "系统管理",
+            "type": 1,
+            "url": "/main/system",
+            "icon": "el-icon-setting",
+            "sort": 2,
+            "children": [
+                {
+                    "id": 2,
+                    "name": "用户管理",
+                    "type": 2,
+                    "url": "/main/system/user",
+                    "sort": 100,
+                    "parentId": 1,
+                    "children": null
+                },
+                {
+                    "id": 3,
+                    "name": "部门管理",
+                    "type": 2,
+                    "url": "/main/system/department",
+                    "sort": 101,
+                    "parentId": 1,
+                    "children": null
+                },
+                {
+                    "id": 4,
+                    "name": "菜单管理",
+                    "type": 2,
+                    "url": "/main/system/menu",
+                    "sort": 103,
+                    "parentId": 1,
+                    "children": null
+                },
+                {
+                    "id": 25,
+                    "name": "角色管理",
+                    "type": 2,
+                    "url": "/main/system/role",
+                    "sort": 102,
+                    "parentId": 1,
+                    "children": null
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "商品中心",
+            "type": 1,
+            "url": "/main/product",
+            "icon": "el-icon-goods",
+            "sort": 3,
+            "children": [
+                {
+                    "id": 15,
+                    "name": "商品类别",
+                    "type": 2,
+                    "url": "/main/product/category",
+                    "sort": 104,
+                    "parentId": 9,
+                    "children": null
+                },
+                {
+                    "id": 16,
+                    "name": "商品信息",
+                    "type": 2,
+                    "url": "/main/product/goods",
+                    "sort": 105,
+                    "parentId": 9,
+                    "children": null
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "随便聊聊",
+            "type": 1,
+            "url": "/main/story",
+            "icon": "el-icon-chat-line-round",
+            "sort": 4,
+            "children": [
+                {
+                    "id": 42,
+                    "name": "你的故事",
+                    "type": 2,
+                    "url": "/main/story/chat",
+                    "sort": 108,
+                    "parentId": 41,
+                    "children": null
+                },
+                {
+                    "id": 43,
+                    "name": "故事列表",
+                    "type": 2,
+                    "url": "/main/story/list",
+                    "sort": 109,
+                    "parentId": 41,
+                    "children": null
+                }
+            ]
         }
     ]
 }

@@ -1,4 +1,4 @@
-import { LOGIN_TOKEN } from '@/global/constants'
+import { LOGIN_TOKEN, USER_INFO, USER_MENUS } from '@/global/constants'
 import router from '@/router'
 import { accountLoginReq, userInfoReq, userMenusByRoleId } from '@/service/login/login'
 import { localCache } from '@/utils/cache'
@@ -14,8 +14,8 @@ interface LoginStore {
 const useLoginStore = defineStore('login', {
   state: (): LoginStore => ({
     token: localCache.getCache(LOGIN_TOKEN) ?? '',
-    userInfo: {},
-    userMenus: [],
+    userInfo: localCache.getCache(USER_INFO) ?? {},
+    userMenus: localCache.getCache(USER_MENUS) ?? [],
   }),
   actions: {
     async loginAccountAction(account: AccountDataType) {
@@ -28,10 +28,12 @@ const useLoginStore = defineStore('login', {
         // 获取用户信息
         const userInfoRes: any = await userInfoReq(loginRes.data.id)
         this.userInfo = userInfoRes.data
+        localCache.setCache(USER_INFO, this.userInfo)
 
         // 获取用户信息的权限
         const userMenusRes: any = await userMenusByRoleId(userInfoRes.data.role.id)
         this.userMenus = userMenusRes.data
+        localCache.setCache(USER_MENUS, this.userMenus)
 
         router.push('/main')
       } catch (error: any) {

@@ -26,6 +26,15 @@ import MainHeader from '@/components/main-header/main-header.vue'
   .main-container {
     height: 100%;
 
+    .el-aside {
+      scrollbar-width: none; /**firefox */
+      -ms-overflow-style: none; /**IE 10+ */
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
     .el-header {
       background-color: skyblue;
     }
