@@ -1,5 +1,45 @@
 <template>
-  <div class="main-header">header</div>
+  <div class="main-header">
+    <div class="menu-icon" @click="handleFold">
+      <el-icon size="28px">
+        <component :is="isFold ? 'Expand' : 'Fold'"></component>
+      </el-icon>
+    </div>
+    <div class="content">
+      <div class="breadcrumb">面包屑</div>
+      <div class="info">个人信息</div>
+    </div>
+  </div>
 </template>
-<script lang="ts" setup></script>
-<style lang="less" scoped></style>
+<script lang="ts" setup>
+import { ref } from 'vue'
+const emit = defineEmits(['handleCollapse'])
+
+const isFold = ref(false)
+function handleFold() {
+  isFold.value = !isFold.value
+
+  emit('handleCollapse', isFold.value)
+}
+</script>
+<style lang="less" scoped>
+.main-header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+  }
+}
+</style>

@@ -2,7 +2,7 @@
   <div class="main-menu">
     <div class="logo">
       <img class="img" src="@/assets/img/title.jpg" alt="" />
-      <h2 class="title">luyolg管理系统</h2>
+      <h2 class="title" v-show="!isCollapse">luyolg管理系统</h2>
     </div>
 
     <div class="menu">
@@ -11,6 +11,7 @@
         text-color="#b7bdc3"
         active-text-color="#fff"
         background-color="#001529"
+        :collapse="isCollapse"
       >
         <template v-for="item in userMenus" :key="item.id">
           <el-sub-menu :index="String(item.id)">
@@ -74,6 +75,13 @@ import useLoginStore from '@/store/login/login'
 const loginStore = useLoginStore()
 const userMenus = loginStore.userMenus
 console.log(userMenus)
+
+defineProps({
+  isCollapse: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 <style lang="less" scoped>
 .main-menu {

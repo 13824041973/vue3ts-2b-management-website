@@ -1,13 +1,13 @@
 <template>
   <div class="main">
     <el-container class="main-container">
-      <el-aside width="210px">
-        <MainMenu />
+      <el-aside :width="isCollapse ? '60px' : '210px'">
+        <MainMenu :isCollapse="isCollapse" />
       </el-aside>
 
       <el-container>
         <el-header height="50px">
-          <MainHeader />
+          <MainHeader @handleCollapse="handleCollapse" />
         </el-header>
 
         <el-main>Main</el-main>
@@ -18,6 +18,12 @@
 <script lang="ts" setup>
 import MainMenu from '@/components/main-menu/main-menu.vue'
 import MainHeader from '@/components/main-header/main-header.vue'
+import { ref } from 'vue'
+
+const isCollapse = ref(false)
+function handleCollapse(isFold: boolean) {
+  isCollapse.value = isFold
+}
 </script>
 <style lang="less" scoped>
 .main {
@@ -30,16 +36,11 @@ import MainHeader from '@/components/main-header/main-header.vue'
       scrollbar-width: none; /**firefox */
       -ms-overflow-style: none; /**IE 10+ */
 
+      transition: width 0.5s ease;
+
       &::-webkit-scrollbar {
         display: none;
       }
-    }
-
-    .el-header {
-      background-color: skyblue;
-    }
-    .el-main {
-      background-color: #fff;
     }
   }
 }
