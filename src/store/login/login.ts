@@ -2,6 +2,7 @@ import { LOGIN_TOKEN, USER_INFO, USER_MENUS } from '@/global/constants'
 import router from '@/router'
 import { accountLoginReq, userInfoReq, userMenusByRoleId } from '@/service/login/login'
 import { localCache } from '@/utils/cache'
+import { mapMenuToRoutes } from '@/utils/map-menus'
 import type { AccountDataType } from '@/views/login/types'
 import { defineStore } from 'pinia'
 
@@ -34,6 +35,10 @@ const useLoginStore = defineStore('login', {
         const userMenusRes: any = await userMenusByRoleId(userInfoRes.data.role.id)
         this.userMenus = userMenusRes.data
         localCache.setCache(USER_MENUS, this.userMenus)
+
+        // 将用户拥有的权限通过addRoute方式加到路由中
+        const routes = mapMenuToRoutes(this.userMenus)
+        routes.forEach((route) => router.addRoute('main', route))
 
         router.push('/main')
       } catch (error: any) {

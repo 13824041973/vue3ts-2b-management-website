@@ -6,8 +6,8 @@
     </div>
 
     <div class="menu">
+      <!-- :default-active="String(userMenus[0].children[0].id)" -->
       <el-menu
-        :default-active="String(userMenus[0].children[0].id)"
         text-color="#b7bdc3"
         active-text-color="#fff"
         background-color="#001529"
@@ -24,7 +24,11 @@
             </template>
 
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item :index="String(subItem.id)">{{ subItem.name }}</el-menu-item>
+              <el-menu-item
+                @click="() => handleClickMenu(subItem.url)"
+                :index="String(subItem.id)"
+                >{{ subItem.name }}</el-menu-item
+              >
             </template>
           </el-sub-menu>
         </template>
@@ -71,10 +75,10 @@
   </div>
 </template>
 <script lang="ts" setup>
+import router from '@/router'
 import useLoginStore from '@/store/login/login'
 const loginStore = useLoginStore()
-const userMenus = loginStore.userMenus
-console.log(userMenus)
+const { userMenus } = loginStore
 
 defineProps({
   isCollapse: {
@@ -82,6 +86,10 @@ defineProps({
     default: false,
   },
 })
+
+function handleClickMenu(path: string) {
+  router.push(path)
+}
 </script>
 <style lang="less" scoped>
 .main-menu {
