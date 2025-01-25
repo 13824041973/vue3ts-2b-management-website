@@ -14,11 +14,12 @@ interface LoginStore {
 
 const useLoginStore = defineStore('login', {
   state: (): LoginStore => ({
-    token: localCache.getCache(LOGIN_TOKEN) ?? '',
-    userInfo: localCache.getCache(USER_INFO) ?? {},
-    userMenus: localCache.getCache(USER_MENUS) ?? [],
+    token: '',
+    userInfo: {},
+    userMenus: [],
   }),
   actions: {
+    // 登录的流程
     async loginAccountAction(account: AccountDataType) {
       try {
         // 登录
@@ -43,6 +44,22 @@ const useLoginStore = defineStore('login', {
         router.push('/main')
       } catch (error: any) {
         ElMessage.warning(error?.message || '服务器发生错误')
+      }
+    },
+
+    // 本地加载用户的缓存（刷新就不会丢失路由导致404）
+    loadLocalCacheAction() {
+      const token = localCache.getCache(LOGIN_TOKEN)
+      const userInfo = localCache.getCache(USER_INFO)
+      const userMenus = localCache.getCache(USER_MENUS)
+      if (token && userInfo && userMenus) {
+        this.token = token
+        this.userInfo = userInfo
+        this.userMenus = userMenus
+
+        // 将用户拥有的权限通过addRoute方式加到路由中
+        const routes = mapMenuToRoutes(userMenus)
+        routes.forEach((route) => router.addRoute('main', route))
       }
     },
   },
