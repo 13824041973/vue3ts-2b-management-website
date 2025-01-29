@@ -13,6 +13,7 @@ function loadLocalRoutes() {
   return localRoutes
 }
 
+export let firstMenu: any = null
 export function mapMenuToRoutes(userMenus: any[]) {
   const localRoutes = loadLocalRoutes()
 
@@ -22,6 +23,8 @@ export function mapMenuToRoutes(userMenus: any[]) {
     for (const subMenu of menu.children) {
       const route = localRoutes.find((item) => item.path === subMenu.url)
       if (route) routes.push(route)
+
+      if (!firstMenu && route) firstMenu = route
     }
   }
 
