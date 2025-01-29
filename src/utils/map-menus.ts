@@ -24,9 +24,17 @@ export function mapMenuToRoutes(userMenus: any[]) {
       const route = localRoutes.find((item) => item.path === subMenu.url)
       if (route) routes.push(route)
 
-      if (!firstMenu && route) firstMenu = route
+      if (!firstMenu && route) firstMenu = subMenu
     }
   }
 
   return routes
+}
+
+export function mapPathToMenu(path: string, userMenus: any[]) {
+  for (const menu of userMenus) {
+    for (const subMenu of menu.children) {
+      if (subMenu.url == path) return subMenu
+    }
+  }
 }

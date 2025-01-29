@@ -36,8 +36,9 @@ router.beforeEach((to) => {
     if (!token) return LOGIN_PATH
   }
 
+  // 去main路由时，给他默认去一个他所拥有的菜单权限的第一个路由
   if(to.path === '/main' && token) {
-    return firstMenu?.path
+    return firstMenu?.url
   }
 })
 
