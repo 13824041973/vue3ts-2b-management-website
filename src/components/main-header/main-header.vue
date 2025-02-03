@@ -6,7 +6,7 @@
       </el-icon>
     </div>
     <div class="content">
-      <div class="breadcrumb">面包屑</div>
+      <HeaderCrumb />
       <HeaderInfo />
     </div>
   </div>
@@ -14,6 +14,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import HeaderInfo from './c-cpns/header-info.vue'
+import HeaderCrumb from './c-cpns/header-crumb.vue'
 const emit = defineEmits(['handleCollapse'])
 
 const isFold = ref(false)
