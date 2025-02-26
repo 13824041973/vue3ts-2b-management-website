@@ -24,11 +24,9 @@
             </template>
 
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item
-                @click="() => handleClickMenu(subItem.url)"
-                :index="String(subItem.id)"
-                >{{ subItem.name }}</el-menu-item
-              >
+              <el-menu-item @click="() => handleClickMenu(subItem.url)" :index="String(subItem.id)"
+                >{{ subItem.name }}
+              </el-menu-item>
             </template>
           </el-sub-menu>
         </template>
@@ -40,7 +38,7 @@
 import router from '@/router'
 import useLoginStore from '@/store/login/login'
 import { mapPathToMenu } from '@/utils/map-menus'
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const loginStore = useLoginStore()
@@ -57,8 +55,10 @@ function handleClickMenu(path: string) {
   router.push(path)
 }
 
-const pathMenu = mapPathToMenu(route.path, userMenus)
-const defaultActive = ref(pathMenu.id + '')
+const defaultActive = computed(() => {
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  return pathMenu.id + ''
+})
 </script>
 <style lang="less" scoped>
 .main-menu {
