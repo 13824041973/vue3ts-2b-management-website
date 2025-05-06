@@ -24,8 +24,8 @@
             </template>
 
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item @click="() => handleClickMenu(subItem.url)" :index="String(subItem.id)"
-                >{{ subItem.name }}
+              <el-menu-item @click="() => handleClickMenu(subItem.url)" :index="String(subItem.id)">
+                {{ subItem.name }}
               </el-menu-item>
             </template>
           </el-sub-menu>

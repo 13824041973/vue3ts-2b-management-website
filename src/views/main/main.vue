@@ -10,7 +10,7 @@
           <MainHeader @handleCollapse="handleCollapse" />
         </el-header>
 
-        <el-main>
+        <el-main class="h-[calc(100%-50px)] bg-[#f0f2f5]">
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -35,6 +35,9 @@ function handleCollapse(isFold: boolean) {
     height: 100%;
 
     .el-aside {
+      overflow-x: hidden;
+      overflow-y: auto;
+
       scrollbar-width: none; /**firefox */
       -ms-overflow-style: none; /**IE 10+ */
 
