@@ -1,0 +1,19 @@
+{
+    "code": 0,
+    "data": {
+      "list": [
+        {
+            "id": 10,
+            "name": "qqq",
+            "realname": "qqqq",
+            "cellphone": 16534546,
+            "enable": 1,
+            "departmentId": 1499,
+            "roleId": 6499,
+            "createAt": "2022-10-17T07:42:27.000Z",
+            "updateAt": "2022-10-17T08:42:27.000Z"
+        }
+      ],
+      "totalCount": 20
+    }
+}

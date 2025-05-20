@@ -1,10 +1,11 @@
 <template>
   <div class="user">
     <UserSearch />
-    <div class="content">content</div>
+    <UserContent />
   </div>
 </template>
 <script lang="ts" setup>
+import UserContent from './c-cpns/user-content.vue'
 import UserSearch from './c-cpns/user-search.vue'
 </script>
 <style lang="less" scoped>
