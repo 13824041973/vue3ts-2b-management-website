@@ -1,0 +1,24 @@
+{
+    "code": 0,
+    "data": {
+      "list": [
+        {
+            "id": 10,
+            "name": "研发部",
+            "parentId": 1,
+            "createAt": "2025-10-17T07:42:27.000Z",
+            "updateAt": "2025-10-17T08:42:27.000Z",
+            "leader": "lyl"
+        },
+        {
+            "id": 1,
+            "name": "总裁办",
+            "parentId": null,
+            "createAt": "2025-10-16T07:42:27.000Z",
+            "updateAt": "2025-10-16T08:42:27.000Z",
+            "leader": "luyolg"
+        }
+      ],
+      "totalCount": 2
+    }
+}

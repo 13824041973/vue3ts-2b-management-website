@@ -21,6 +21,10 @@
 import MainMenu from '@/components/main-menu/main-menu.vue'
 import MainHeader from '@/components/main-header/main-header.vue'
 import { ref } from 'vue'
+import useMainStore from '@/store/main/main'
+
+const mainStore = useMainStore()
+mainStore.fetchEntireDataAction()
 
 const isCollapse = ref(false)
 function handleCollapse(isFold: boolean) {

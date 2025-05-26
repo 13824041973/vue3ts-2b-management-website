@@ -32,6 +32,7 @@
               type="daterange"
               start-placeholder="开始时间"
               end-placeholder="结束时间"
+              value-format="YYYY-MM-DD"
             />
           </el-form-item>
         </el-col>
@@ -46,22 +47,19 @@
 </template>
 <script lang="ts" setup>
 import type { ElForm } from 'element-plus'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
+
+const emits = defineEmits(['search-table'])
 
 const formRef = ref<InstanceType<typeof ElForm>>()
-const searchForm = reactive({
-  name: '',
-  realName: '',
-  cellphone: '',
-  enable: 1,
-  createAt: [],
-})
+const searchForm = defineModel<any>('searchForm')
 
 function handleResetClick() {
   formRef.value?.resetFields()
+  emits('search-table')
 }
 function handleQueryClick() {
-  console.log(123)
+  emits('search-table')
 }
 </script>
 <style lang="less" scoped>

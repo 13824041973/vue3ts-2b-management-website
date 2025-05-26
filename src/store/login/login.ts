@@ -22,17 +22,17 @@ const useLoginStore = defineStore('login', {
     // 登录的流程
     async loginAccountAction(account: AccountDataType) {
       try {
-        // 登录
+        // 1.登录
         const loginRes: any = await accountLoginReq(account)
         this.token = loginRes.data.token
         localCache.setCache(LOGIN_TOKEN, this.token)
 
-        // 获取用户信息
+        // 2.获取用户信息
         const userInfoRes: any = await userInfoReq(loginRes.data.id)
         this.userInfo = userInfoRes.data
         localCache.setCache(USER_INFO, this.userInfo)
 
-        // 获取用户信息的权限
+        // 3.获取用户信息的权限(菜单menus)
         const userMenusRes: any = await userMenusByRoleId(userInfoRes.data.role.id)
         this.userMenus = userMenusRes.data
         localCache.setCache(USER_MENUS, this.userMenus)
