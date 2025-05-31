@@ -3,8 +3,16 @@
     "data": {
       "list": [
         {
+            "id": 11,
+            "name": "人事",
+            "parentId": 1,
+            "createAt": "2025-10-01T07:42:27.000Z",
+            "updateAt": "2025-10-01T08:42:27.000Z",
+            "leader": "lyl"
+        },
+        {
             "id": 10,
-            "name": "研发部",
+            "name": "运营",
             "parentId": 1,
             "createAt": "2025-10-17T07:42:27.000Z",
             "updateAt": "2025-10-17T08:42:27.000Z",
@@ -12,7 +20,7 @@
         },
         {
             "id": 1,
-            "name": "总裁办",
+            "name": "超级管理员",
             "parentId": null,
             "createAt": "2025-10-16T07:42:27.000Z",
             "updateAt": "2025-10-16T08:42:27.000Z",
